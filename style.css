@@ -1,0 +1,74 @@
+:root {
+    --accent-blue: #00A3FF;
+    --section-bg: rgba(255, 255, 255, 0.4);
+    --header-bg: rgba(255, 255, 255, 0.5); 
+}
+
+body { 
+    font-family: 'Inter', sans-serif; 
+    -webkit-tap-highlight-color: transparent;
+    /* Immersive Blue Radial Gradient */
+    background: radial-gradient(circle at top right, #e0f4ff 0%, #bde7ff 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* Customize Time Input Calendar Icon */
+input[type="time"]::-webkit-calendar-picker-indicator { 
+    filter: invert(0.6); 
+    cursor: pointer; 
+}
+
+/* Translucent Navigation Bar */
+.glass-nav { 
+    background: var(--header-bg); 
+    backdrop-filter: blur(15px); 
+    border-bottom: 1px solid rgba(0, 163, 255, 0.1); 
+}
+
+/* Glassy Section Cards */
+.section-card { 
+    background: var(--section-bg); 
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.6); 
+    border-radius: 2rem;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 163, 255, 0.1);
+}
+
+/* Break Row Grid Items */
+.break-row {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* Animations for Row Addition */
+.animate-up { 
+    animation: slideUp 0.3s ease-out; 
+}
+
+@keyframes slideUp { 
+    from { 
+        opacity: 0; 
+        transform: translateY(10px); 
+    } 
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    } 
+}
+
+/* Scrollbar Styling for a Blue Glass Feel */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 163, 255, 0.2);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 163, 255, 0.4);
+}
