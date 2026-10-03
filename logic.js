@@ -1,7 +1,7 @@
 const TimeLogic = {
     parseTime: (str) => {
         if (str == null || String(str).trim() === '') return { valid: false, minutes: 0 };
-        const match = String(str).trim().match(/^(\d{1,2}):(\d{2})$/);
+        const match = String(str).trim().match(/^(\d{2}):(\d{2})$/);
         if (!match) return { valid: false, minutes: 0 };
         const h = Number(match[1]);
         const m = Number(match[2]);
