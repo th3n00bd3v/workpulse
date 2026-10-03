@@ -1,64 +1,378 @@
 :root {
-    --accent-blue: #00A3FF;
-    --section-bg: rgba(255, 255, 255, 0.4);
-    --header-bg: rgba(255, 255, 255, 0.5); 
+    /* Material 3 color roles (light theme, orange-teal seed) */
+    --primary: #006a60;
+    --on-primary: #ffffff;
+    --primary-container: #9ff2e8;
+    --on-primary-container: #00201c;
+
+    --secondary-container: #ffdcc2;
+    --on-secondary-container: #4d2600;
+
+    --bg: #faf4ef;
+    --surface: #ffffff;
+    --surface-container: #f2e9dd;
+    --surface-container-high: #e8dbcd;
+
+    --on-surface: #1f1a16;
+    --on-surface-variant: #50453b;
+
+    --outline: #82776d;
+    --outline-variant: #ddd1c5;
+    --error: #ba1a1a;
+
+    /* Brand accents reserved for decorative highlights */
+    --accent-brand: #ff7a29;
+    --accent-teal: #00b3a0;
+
+    /* Material elevation */
+    --elev-1: 0 1px 2px rgba(31, 26, 22, 0.3), 0 1px 3px 1px rgba(31, 26, 22, 0.15);
+    --elev-2: 0 1px 2px rgba(31, 26, 22, 0.3), 0 2px 6px 2px rgba(31, 26, 22, 0.15);
+
+    /* Shape */
+    --shape-card: 16px;
+    --shape-field: 12px 12px 4px 4px;
 }
 
-body { 
-    font-family: 'Inter', sans-serif; 
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
     -webkit-tap-highlight-color: transparent;
-    /* Immersive Blue Radial Gradient */
-    background: radial-gradient(circle at top right, #e0f4ff 0%, #bde7ff 100%);
+    background:
+        radial-gradient(1100px 520px at 88% -8%, rgba(255, 122, 41, 0.12), transparent 62%),
+        radial-gradient(900px 480px at -8% 108%, rgba(0, 179, 160, 0.10), transparent 60%),
+        var(--bg);
     background-attachment: fixed;
+    color: var(--on-surface);
     min-height: 100vh;
 }
 
-/* Customize Time Input Calendar Icon */
-input[type="time"]::-webkit-calendar-picker-indicator { 
-    filter: invert(0.6); 
-    cursor: pointer; 
+/* ----------------------------------------------------------------
+   Top app bar
+   ---------------------------------------------------------------- */
+.m-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--outline-variant);
 }
 
-/* Translucent Navigation Bar */
-.glass-nav { 
-    background: var(--header-bg); 
-    backdrop-filter: blur(15px); 
-    border-bottom: 1px solid rgba(0, 163, 255, 0.1); 
+.m-brand-chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--secondary-container), #ffc59b);
+    color: var(--on-secondary-container);
+    font-size: 0.875rem;
+    font-weight: 800;
 }
 
-/* Glassy Section Cards */
-.section-card { 
-    background: var(--section-bg); 
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.6); 
-    border-radius: 2rem;
-    padding: 1.5rem;
-    box-shadow: 0 8px 32px 0 rgba(0, 163, 255, 0.1);
+.m-app-title {
+    color: var(--on-surface-variant);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
 }
 
-/* Break Row Grid Items */
+.m-date {
+    color: var(--on-surface-variant);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.m-accent {
+    color: var(--accent-brand);
+}
+
+/* ----------------------------------------------------------------
+   Cards
+   ---------------------------------------------------------------- */
+.m-card {
+    background: var(--surface);
+    border-radius: var(--shape-card);
+    box-shadow: var(--elev-1);
+}
+
+/* ----------------------------------------------------------------
+   Headings / labels / error
+   ---------------------------------------------------------------- */
+.m-heading {
+    color: var(--on-surface);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.m-label {
+    display: block;
+    color: var(--on-surface-variant);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.m-label--flush {
+    margin-bottom: 0;
+}
+
+.m-error {
+    color: var(--error);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    min-height: 1.25rem;
+    text-align: center;
+}
+
+/* ----------------------------------------------------------------
+   Filled text fields
+   ---------------------------------------------------------------- */
+.m-field {
+    width: 100%;
+    min-height: 48px;
+    padding: 0.75rem 1rem;
+    background: var(--surface-container-high);
+    border: none;
+    border-radius: var(--shape-field);
+    color: var(--on-surface);
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    box-shadow: 0 1px 0 0 var(--outline);
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.m-field::-webkit-input-placeholder {
+    color: var(--on-surface-variant);
+    opacity: 0.6;
+}
+
+.m-field:hover {
+    background: var(--surface-container);
+}
+
+.m-field:focus {
+    outline: none;
+    background: var(--surface-container);
+    box-shadow: 0 2px 0 0 var(--primary);
+}
+
+.m-field--lg {
+    min-height: 56px;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+/* Break duration badge */
+.m-dur {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 0.875rem;
+    background: var(--secondary-container);
+    color: var(--on-secondary-container);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* ----------------------------------------------------------------
+   Icon buttons + state layers
+   ---------------------------------------------------------------- */
+.m-icon-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--on-surface-variant);
+    cursor: pointer;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.m-icon-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.m-icon-btn:hover::before { opacity: 0.08; }
+.m-icon-btn:focus-visible::before { opacity: 0.12; }
+.m-icon-btn:active::before { opacity: 0.15; }
+
+.m-icon-btn svg {
+    position: relative;
+}
+
+.m-icon-btn:disabled {
+    color: var(--on-surface);
+    opacity: 0.38;
+    cursor: default;
+}
+
+.m-icon-btn:disabled::before {
+    display: none;
+}
+
+.m-icon-btn--filled {
+    background: var(--primary);
+    color: var(--on-primary);
+    box-shadow: var(--elev-1);
+}
+
+.m-icon-btn--filled::before {
+    background: var(--on-primary);
+}
+
+.m-icon-btn--filled:hover::before { opacity: 0.08; }
+.m-icon-btn--filled:focus-visible::before { opacity: 0.12; }
+.m-icon-btn--filled:active::before { opacity: 0.15; }
+
+.m-icon-btn--filled:disabled {
+    background: var(--surface-container-high);
+    color: var(--on-surface);
+    box-shadow: none;
+}
+
+.m-icon-btn--tonal {
+    background: var(--secondary-container);
+    color: var(--on-secondary-container);
+}
+
+.m-icon-btn--tonal::before {
+    background: var(--on-secondary-container);
+}
+
+.m-icon-btn--tonal:hover::before { opacity: 0.08; }
+.m-icon-btn--tonal:focus-visible::before { opacity: 0.12; }
+.m-icon-btn--tonal:active::before { opacity: 0.15; }
+
+.m-icon-btn--error {
+    color: var(--error);
+}
+
+.m-icon-btn--error::before {
+    background: var(--error);
+}
+
+/* ----------------------------------------------------------------
+   Metric cards (duration calculation)
+   ---------------------------------------------------------------- */
+.m-metric {
+    background: var(--surface);
+    border-radius: var(--shape-card);
+    box-shadow: var(--elev-1);
+    padding: 1rem;
+}
+
+.m-metric__label {
+    color: var(--on-surface-variant);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.m-metric__value {
+    color: var(--on-surface);
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.m-metric__value--accent {
+    color: var(--accent-brand);
+}
+
+.m-metric--primary {
+    background: var(--primary);
+    box-shadow: var(--elev-2);
+}
+
+.m-metric--primary .m-metric__label {
+    color: var(--on-primary);
+    opacity: 0.85;
+}
+
+.m-metric--primary .m-metric__value {
+    color: var(--on-primary);
+}
+
+.m-op {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    color: var(--primary);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* ----------------------------------------------------------------
+   Break rows
+   ---------------------------------------------------------------- */
 .break-row {
-    background: rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    background: var(--surface);
+    border: 1px solid var(--outline-variant);
+    border-radius: 12px;
+    box-shadow: var(--elev-1);
 }
 
-/* Animations for Row Addition */
-.animate-up { 
-    animation: slideUp 0.3s ease-out; 
+/* Temporal disabled state maintained by the controller */
+#net-card-container.grayscale {
+    opacity: 0.45;
+    filter: grayscale(0.85);
 }
 
-@keyframes slideUp { 
-    from { 
-        opacity: 0; 
-        transform: translateY(10px); 
-    } 
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    } 
+/* ----------------------------------------------------------------
+   Animations
+   ---------------------------------------------------------------- */
+.animate-up {
+    animation: slideUp 0.3s ease-out;
 }
 
-/* Scrollbar Styling for a Blue Glass Feel */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ----------------------------------------------------------------
+   Scrollbar
+   ---------------------------------------------------------------- */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -66,9 +380,9 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: rgba(0, 163, 255, 0.2);
+    background: rgba(0, 106, 96, 0.3);
     border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 163, 255, 0.4);
+    background: rgba(255, 122, 41, 0.5);
 }
