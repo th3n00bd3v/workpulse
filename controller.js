@@ -54,7 +54,10 @@ const App = {
     },
     formatTimeValue(value) {
         const digits = String(value).replace(/[^0-9]/g, '').slice(0, 4);
-        return digits.length > 2 ? `${digits.slice(0, 2)}:${digits.slice(2)}` : digits;
+        if (!digits) return '';
+        if (digits.length <= 2) return digits;
+        if (digits.length === 3) return `${digits.slice(0, 1)}:${digits.slice(1)}`;
+        return `${digits.slice(0, 2)}:${digits.slice(2)}`;
     },
     normalizeStoredTime(value) {
         const legacyTime = String(value).match(/^(\d):([0-5]\d)$/);
