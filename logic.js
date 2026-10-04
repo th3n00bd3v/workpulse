@@ -1,7 +1,7 @@
 const TimeLogic = {
     parseTime: (str) => {
         if (str == null || String(str).trim() === '') return { valid: false, minutes: 0 };
-        const match = String(str).trim().match(/^(\d{2}):(\d{2})$/);
+        const match = String(str).trim().match(/^(\d{1,2}):(\d{2})$/);
         if (!match) return { valid: false, minutes: 0 };
         const h = Number(match[1]);
         const m = Number(match[2]);
@@ -17,7 +17,7 @@ const TimeLogic = {
         const s = TimeLogic.parseTime(start);
         const e = TimeLogic.parseTime(end);
         if (!s.valid || !e.valid) return 0;
-        if (s.minutes === e.minutes) return 0;
+        if (s.minutes === e.minutes) return 1440;
         if (e.minutes > s.minutes) return e.minutes - s.minutes;
         return (1440 - s.minutes) + e.minutes;
     },
